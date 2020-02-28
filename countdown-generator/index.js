@@ -18,7 +18,7 @@ module.exports = {
      * @param {number} frames
      * @param {requestCallback} cb - The callback that is run once complete.
      */
-    init: function(time, width=200, height=200, color='ffffff', bg='000000', name='default', frames=30, cb){
+    init: function(time, width=200, height=200, color='000000', bg='ffffff', name='default', frames=30, cb){
         // Set some sensible upper / lower bounds
         this.width = this.clamp(width, 150, 500);
         this.height = this.clamp(height, 150, 500);
@@ -68,7 +68,7 @@ module.exports = {
         
         // either the date has passed, or we have a difference
         if(difference <= 0){
-            return 'Date has passed!';
+            return 'A reserva expirou!';
         } else {
             // duration of the difference
             return moment.duration(difference);
@@ -102,8 +102,8 @@ module.exports = {
         });
         
         // estimate the font size based on the provided width
-        let fontSize = Math.floor(this.width / 12) + 'px';
-        let fontFamily = 'Courier New'; // monospace works slightly better
+        let fontSize = Math.floor(this.width / 8) + 'px';
+        let fontFamily = 'Arial'; // monospace works slightly better
         
         // set the font style
         ctx.font = [fontSize, fontFamily].join(' ');
@@ -132,7 +132,8 @@ module.exports = {
                 seconds = (seconds.toString().length == 1) ? '0' + seconds : seconds;
                 
                 // build the date string
-                let string = [days, 'd ', hours, 'h ', minutes, 'm ', seconds, 's'].join('');
+                //let string = [days, 'd ', hours, 'h ', minutes, 'm ', seconds, 's'].join('');
+                let string = [hours, 'h ', minutes, 'm ', seconds, 's'].join('');
                 
                 // paint BG
                 ctx.fillStyle = this.bg;
