@@ -186,6 +186,10 @@ module.exports = {
         // clear out any 0 groups and limiters
         result = result.replace(/\[0+:[^\]]*\]/g, '');
         result = result.replace(/\[\d+:([^\]]*)\]/g, '$1');
+        result = result.trim();
+        if (result.length === 0) {
+            return this.message;
+        }
 
         return result;
     },
